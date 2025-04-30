@@ -1,11 +1,20 @@
 import React from "react";
 
-function Task() {
+function Task({ task, text, category, onDelete }) {
+  // Use individual props if provided, otherwise use task object
+  const taskText = text || task?.text;
+  const taskCategory = category || task?.category;
+
   return (
     <div className="task">
-      <div className="label">CATEGORY HERE</div>
-      <div className="text">TEXT HERE</div>
-      <button className="delete">X</button>
+      <div className="label">{taskCategory}</div>
+      <div className="text">{taskText}</div>
+      <button 
+        className="delete"
+        onClick={() => onDelete?.(taskText)}
+      >
+        X
+      </button>
     </div>
   );
 }
